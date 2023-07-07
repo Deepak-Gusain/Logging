@@ -1,23 +1,24 @@
-# Spark_Logging
-Splunk and fluentd integration for logging
+## Spark_Logging
+### Splunk and fluentd integration for logging
 
-Steps for end to end logging solution:-
+### Steps for end to end logging solution:-
 
-Problem:- 
+### Problem:- 
 Let say you have a spark application running on databricks, As you know we should write code in try block to handle any exception scenario. We must capture all logs to analyse our application.
 
-Solution:-
+### Solution:-
 Write logs using logging / py4j to a files (in our case to GCP bucket), from another job read these files and send it to splunk using "emit" function. Please refer python file.
 
 a) you need to execute below command (Below are for linux):-
-   --> apt-get update --fix-missing
-   --> apt install ruby-full build-essential -y
-   --> gem install fluentd fluent-plugin-splunk-hec
+
+   1) apt-get update --fix-missing
+   2) apt install ruby-full build-essential -y
+   3) gem install fluentd fluent-plugin-splunk-hec
    
 b) After that you have to create "final.conf" file this will be used by fluentd    to connect and flush logs to splunk. Please refer final.conf file.
    use below command to run fluentd
    
-   -->  screen -d -m fluentd -c final.conf
+   1)  screen -d -m fluentd -c final.conf
 
 c) We were using splunk logs for our application debugging and tracing.
 
